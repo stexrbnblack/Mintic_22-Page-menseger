@@ -1,5 +1,6 @@
-import { Login } from './components/Login';
 import './App.css';
+import { Login } from './components/Login';
+import { NewOrder } from './components/NewOrder';
 
 export default function App() {
   const handleSubmit = (user) => {
@@ -15,6 +16,7 @@ export default function App() {
     <div className="App">
       <h1>Login</h1>
       <Login onSubmit={handleSubmit} />
+      <NewOrder onSubmit={handleSubmit} />
     </div>
   );
 }
