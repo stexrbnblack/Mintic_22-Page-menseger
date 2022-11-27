@@ -1,11 +1,13 @@
 import { useState } from 'react';
 
 export function NewOrder({ onSubmit }) {
-  const [date, setDate, time, setTime] = userState('');
-  const [long, setLong, tall, setTall, heigth, setHeigth] = userState('');
-  const [origen, setOrigen, id, setId] = userState('');
-  const [name, setName, id2, setId2] = userState('');
-  const [dest, setDest] = userState('');
+  const [date, setDate, time, setTime] = useState('');
+  const [long, setLong, tall, setTall] = useState('');
+  const [heigth, setHeigth] = useState('');
+  const [origen, setOrigen] = useState('');
+  const [id, setId] = useState('');
+  const [name, setName, id2, setId2] = useState('');
+  const [dest, setDest] = useState('');
 
   const dateChangeHandler = (e) => {
     setDate(e.target.value);
@@ -59,6 +61,9 @@ export function NewOrder({ onSubmit }) {
     onSubmit(origen);
     setOrigen('');
 
+    onSubmit(name);
+    setName('');
+
     onSubmit(id2);
     setId2('');
 
@@ -67,7 +72,7 @@ export function NewOrder({ onSubmit }) {
   };
 
   return (
-    <div class="login-box1" id="login-box1">
+    <div>
       <p1>New Order</p1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="date">Fecha-Date: </label>
@@ -78,16 +83,6 @@ export function NewOrder({ onSubmit }) {
           placeholder="Programar Fecha de Recogida"
           value={date}
           onChange={dateChangeHandler}
-        />
-        <br />
-        <label htmlFor="time">Time: </label>
-        <input
-          type="time"
-          id="time"
-          name="time"
-          placeholder="time"
-          value={time}
-          onChange={timeChangeHandler}
         />
         <br />
         <label htmlFor="long">Diameter Box: </label>
@@ -115,21 +110,14 @@ export function NewOrder({ onSubmit }) {
           value={heigth}
           onChange={heigthChangeHandler}
         />
-        <label htmlFor="origin">Address</label>
-        <input
-          type="text"
-          id="origin"
-          name="origin"
-          placeholder="Origin Address and City"
-          value={origen}
-          onChange={origenChangeHandler}
-        />
+        <br />
+
         <label htmlFor="id">Sender info</label>
         <input
           type="text"
           id="id"
           name="id"
-          placeholder="id"
+          placeholder="ID"
           value={id}
           onChange={idChangeHandler}
         />
@@ -141,12 +129,21 @@ export function NewOrder({ onSubmit }) {
           value={name}
           onChange={nameChangeHandler}
         />
+        <input
+          type="text"
+          id="origin"
+          name="origin"
+          placeholder="Origin Address and City"
+          value={origen}
+          onChange={origenChangeHandler}
+        />
+        <br />
         <label htmlFor="id2">Reitend info</label>
         <input
           type="text"
           id="id2"
           name="id2"
-          placeholder="id2"
+          placeholder="ID"
           value={id2}
           onChange={id2ChangeHandler}
         />
@@ -158,6 +155,7 @@ export function NewOrder({ onSubmit }) {
           value={dest}
           onChange={destChangeHandler}
         />
+        <br />
         <br />
         <button type="submit" disabled={id.length === 0}>
           Order Register

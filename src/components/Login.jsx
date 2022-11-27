@@ -27,8 +27,8 @@ export function Login({ onSubmit }) {
     onSubmit(pass);
     setPass('');
 
-    onSubmit(userN);
-    setUserN('');
+    onSubmit(usern);
+    setUsern('');
 
     onSubmit(email);
     setEmail('');
@@ -45,6 +45,7 @@ export function Login({ onSubmit }) {
             id="user"
             name="user"
             placeholder="User Name"
+            autoComplete="off"
             value={user}
             onChange={userChangeHandler}
           />
