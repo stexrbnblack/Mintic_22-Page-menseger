@@ -1,6 +1,7 @@
 import './App.css';
 import { Login } from './components/Login';
 import { NewOrder } from './components/NewOrder';
+import { List } from './components/List';
 import { X } from './components/X';
 
 export default function App() {
@@ -18,7 +19,6 @@ export default function App() {
       <h1>Login</h1>
       <Login />
       <NewOrder />
-      <X />
     </div>
   );
 }

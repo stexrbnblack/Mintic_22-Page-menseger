@@ -1,44 +1,31 @@
-import { useState } from 'react';
+import { use, useState } from 'react';
+
+const MIN = 6;
+const MAX = 50;
+const GROUP = `[a-záéíóúüA-ZÁÉÍÓÚÜÑ]{${MIN},${MAX}}`;
+const VALIDATION = new RegExp(`^(${GROUP})( ${GROUP})*$`);
 
 export function Login({ onSubmit }) {
-  const [user, setUser, pass, setPass] = useState('');
-  const [email, setEmail, usern, setUsern] = useState('');
-
-  const userChangeHandler = (e) => {
-    setUser(e.target.value);
-  };
-  const passChangeHandler = (e) => {
-    setPass(e.target.value);
+  const validate = (email, pass, pass2) => {
+    ///if (pass.length < 6 || pass2.length < 6) return 'La contraseña debe tener min 6 caracteres';
+    //if (!user || !usern.includes(GROUP)) return 'Usuario de contener caracter especial';
+    if (!email.includes('@')) return 'emal incorrecto';
   };
 
-  const usernChangeHandler = (e) => {
-    setUsern(e.target.value);
-  };
-  const emailChangeHandler = (e) => {
-    setEmail(e.target.value);
-  };
+  const [user, setUser] = useState('');
+  const [pass, setPass] = useState('');
+  const [email, setEmail] = useState('');
+  const [usern, setUsern] = useState('');
+  const [pass2, setPass2] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    onSubmit(user);
-    setUser('');
-
-    onSubmit(pass);
-    setPass('');
-
-    onSubmit(usern);
-    setUsern('');
-
-    onSubmit(email);
-    setEmail('');
-  };
+  const errorMessange = validate(user, pass);
+  const errorMessange1 = validate(usern, email, pass2);
 
   return (
     <div class="login" id="login">
       <div class="login-box1" id="login-box1">
         <p1>Login</p1>
-        <form onSubmit={handleSubmit}>
+        <form>
           <label htmlFor="user">User: </label>
           <input
             type="text"
@@ -47,19 +34,22 @@ export function Login({ onSubmit }) {
             placeholder="User Name"
             autoComplete="off"
             value={user}
-            onChange={userChangeHandler}
+            onChange={(ev) => setUser(ev.target.value)}
           />
           <br />
-          <label htmlFor="user">Password: </label>
+          <label htmlFor="pass">Password: </label>
           <input
-            type="text"
+            type="password"
             id="pass"
             name="pass"
             placeholder="Password"
             value={pass}
-            onChange={passChangeHandler}
+            onChange={(ev) => setPass(ev.target.value)}
           />
-          <br />
+          <p>{errorMessange}</p>
+          <p>
+            mostrar: {user} {pass} {usern}
+          </p>
           <br />
           <button type="submit" disabled={user.length === 0}>
             Ingresar
@@ -68,37 +58,40 @@ export function Login({ onSubmit }) {
       </div>
       <div class="login-box1" id="login-box1">
         <p1>Register</p1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="user">User Name: </label>
+        <form>
+          <label htmlFor="usern">User Name: </label>
           <input
             type="text"
-            id="user"
-            name="user"
+            id="usern"
+            name="usern"
             placeholder="User Name"
             value={usern}
-            onChange={usernChangeHandler}
+            onChange={(ev) => setUsern(ev.target.value)}
           />
           <br />
-          <label htmlFor="user">Email: </label>
+          <label htmlFor="email">Email: </label>
           <input
             type="text"
             id="email"
             name="email"
             placeholder="Email"
             value={email}
-            onChange={emailChangeHandler}
+            onChange={(ev) => setEmail(ev.target.value)}
           />
           <br />
-          <label htmlFor="user">Password: </label>
+          <label htmlFor="pass2">Password: </label>
           <input
-            type="text"
-            id="pass"
-            name="pass"
+            type="password"
+            id="pass2"
+            name="pass2"
             placeholder="Password"
-            value={pass}
-            onChange={passChangeHandler}
+            value={pass2}
+            onChange={(ev) => setPass2(ev.target.value)}
           />
-          <br />
+          <p>{errorMessange1}</p>
+          <p>
+            mostrar1: {pass2} {email}
+          </p>
           <br />
           <button type="submit" disabled={email.length === 0}>
             Register

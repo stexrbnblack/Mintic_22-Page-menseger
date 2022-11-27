@@ -1,13 +1,12 @@
-
-import { NewOrder } from './NewOrder'
+import { NewOrder } from './NewOrder';
 
 export function List({ onToggle, todos = [] }) {
-  return(
+  return (
     <>
-    <hr />
-      <span>Pendientes: {incomplete.length}.</span>
-    <hr />
-    <ul className="card">
+      <hr />
+      <span>Lista de Ordenes {incomplete.length}.</span>
+      <hr />
+      <ul className="card">
         {todos?.map(({ id, description, isDone }) => (
           <NewOrder
             key={id}
@@ -19,6 +18,5 @@ export function List({ onToggle, todos = [] }) {
         ))}
       </ul>
     </>
-
   );
 }
